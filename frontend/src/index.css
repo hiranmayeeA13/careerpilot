@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────────────────────
+   BATCH 1: Warm Terracotta, Mocha & Caramel Gradient
+   Exact Palette:
+   #3E2723 (Espresso Deep)
+   #A0522D (Terracotta / Sienna)
+   #D18B47 (Caramel Amber)
+   #E4C7A1 (Toasted Almond)
+   #F6E6D9 (Warm Cream)
+   #FFF0E8 (Soft Peach Pearl)
+   #FFFCF8 (Warm Pearl White)
+───────────────────────────────────────────────────────────── */
+:root,
+[data-theme='warm-terracotta'] {
+  color-scheme: dark;
+  --bg-ink: #1a0f0d;
+  --bg-panel: rgba(45, 27, 24, 0.94);
+  --bg-panel-solid: #3E2723;
+  --bg-panel2: #3E2723;
+  --bg-card: rgba(48, 29, 25, 0.90);
+  --border-subtle: rgba(228, 199, 161, 0.14);
+  --border-glow: rgba(209, 139, 71, 0.5);
+  --color-accent: #D18B47;
+  --color-accent2: #E4C7A1;
+  --color-text-main: #FFFCF8;
+  --color-text-sub: #FFF0E8;
+  --color-text-dim: #F6E6D9;
+  --body-bg: 
+    radial-gradient(1250px 750px at 15% -10%, rgba(209, 139, 71, 0.28), transparent 60%),
+    radial-gradient(950px 550px at 105% 20%, rgba(160, 82, 45, 0.32), transparent 60%),
+    radial-gradient(850px 650px at 50% 110%, rgba(62, 39, 35, 0.85), transparent 70%),
+    #1a0f0d;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   BATCH 2: Midnight Slate & Cool Mist Dark Mode
+   Exact Palette:
+   #0F172A (Slate 900 Midnight Obsidian)
+   #334155 (Slate 700 Deep Steel)
+   #64748B (Slate 500 Steel Slate)
+   #94A3B8 (Slate 400 Cool Mist)
+   #E2E8F0 (Slate 200 Pale Slate)
+   #F8FAFC (Slate 50 Pure Ice White)
+   #FFFFFF (Pure White)
+───────────────────────────────────────────────────────────── */
+[data-theme='midnight-slate'] {
+  color-scheme: dark;
+  --bg-ink: #0b111e;
+  --bg-panel: rgba(20, 29, 44, 0.94);
+  --bg-panel-solid: #1e293b;
+  --bg-panel2: #334155;
+  --bg-card: rgba(24, 34, 52, 0.90);
+  --border-subtle: rgba(148, 163, 184, 0.15);
+  --border-glow: rgba(226, 232, 240, 0.45);
+  --color-accent: #E2E8F0;
+  --color-accent2: #94A3B8;
+  --color-text-main: #FFFFFF;
+  --color-text-sub: #F8FAFC;
+  --color-text-dim: #94A3B8;
+  --body-bg: 
+    radial-gradient(1250px 650px at 15% -10%, rgba(100, 116, 139, 0.28), transparent 60%),
+    radial-gradient(950px 550px at 105% 15%, rgba(51, 65, 85, 0.40), transparent 60%),
+    radial-gradient(850px 650px at 50% 110%, rgba(15, 23, 42, 0.95), transparent 70%),
+    #0b111e;
+}
+
+html, body, #root {
+  min-height: 100%;
+}
+
+body {
+  background: var(--body-bg);
+  color: var(--color-text-main);
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  transition: background 0.4s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 1.1rem;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 10px 32px -4px rgba(0, 0, 0, 0.4);
+  transition: border-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  border-color: var(--border-glow);
+}
+
+.card-hover {
+  @apply transition-all duration-200 hover:-translate-y-0.5;
+}
+
+.scrollbar-thin::-webkit-scrollbar { height: 6px; width: 6px; }
+.scrollbar-thin::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 999px; }
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(209, 136, 71, 0.4); }
+  100% { box-shadow: 0 0 0 10px rgba(209, 136, 71, 0); }
+}
+.pulse-ring { animation: pulse-ring 1.8s ease-out infinite; }
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fade-up 0.35s ease-out both; }
+
+/* Print optimization for PDF resume reports */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #111827 !important;
+  }
+  aside, nav, header, button {
+    display: none !important;
+  }
+  .card {
+    background: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
+    box-shadow: none !important;
+    page-break-inside: avoid;
+  }
+}
