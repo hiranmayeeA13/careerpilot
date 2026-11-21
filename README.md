@@ -1,2 +1,2 @@
 # careerpilot
-A helpful career pivot webiste
+A helpful career pivot website
